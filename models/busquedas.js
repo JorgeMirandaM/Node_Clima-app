@@ -25,9 +25,13 @@ class Busquedas{
 
             const resp = await instance.get();
 
-            console.log(resp.data);
+            return resp.data.map(lugar => ({
+                id:lugar.place_id,
+                nombre:lugar.display_name,
+                lng:lugar.lon,
+                lat:lugar.lat
+            }))
 
-            return [];
         } catch (error) {
             return [];
         }
