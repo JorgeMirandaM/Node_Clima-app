@@ -1,9 +1,12 @@
-const { leerInput, inquirerMenu, inquirerPausa } = require("./helpers/inquirer")
+require('dotenv').config();
 
-
+const { leerInput, inquirerMenu, inquirerPausa } = require("./helpers/inquirer");
+const Busquedas = require("./models/busquedas");
 
 const main = async()=>{
     let opt='';
+
+    const busquedas= new Busquedas();
 
 
     do{
@@ -12,7 +15,8 @@ const main = async()=>{
 
         switch(opt){
             case 1:
-                console.log('Selecciono buscar ciudad');
+                const lugar= await leerInput();
+                await busquedas.ciudad(lugar);
             break;
 
             case 2:
